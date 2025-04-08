@@ -1,0 +1,14 @@
+2025-04-08 23:29:28,001 - INFO - Generating PCAP file: test_traffic.pcap
+2025-04-08 23:29:28,001 - INFO - Generating normal traffic for 192.168.1.10 -> 192.168.1.100
+2025-04-08 23:29:28,091 - INFO - Generating normal traffic for 192.168.1.11 -> 192.168.1.101
+2025-04-08 23:29:28,153 - INFO - Generating normal traffic for 192.168.1.12 -> 192.168.1.102
+2025-04-08 23:29:28,184 - INFO - Generating normal traffic for 192.168.1.13 -> 192.168.1.103
+2025-04-08 23:29:28,267 - INFO - Generating normal traffic for 192.168.1.14 -> 192.168.1.104
+2025-04-08 23:29:28,543 - INFO - Successfully generated PCAP file with 1701 packets
+2025-04-08 23:31:35,604 - INFO - Generating PCAP file: test_traffic.pcap
+2025-04-08 23:31:35,604 - INFO - Generating blackhole traffic for 192.168.1.10 -> 192.168.1.100
+2025-04-08 23:31:36,665 - INFO - Generating normal traffic for 192.168.1.11 -> 192.168.1.101
+2025-04-08 23:31:36,700 - INFO - Generating normal traffic for 192.168.1.12 -> 192.168.1.102
+2025-04-08 23:31:36,770 - INFO - Generating normal traffic for 192.168.1.13 -> 192.168.1.103
+2025-04-08 23:31:36,815 - INFO - Generating normal traffic for 192.168.1.14 -> 192.168.1.104
+2025-04-08 23:31:37,045 - INFO - Successfully generated PCAP file with 1469 packets
