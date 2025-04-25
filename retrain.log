@@ -1,0 +1,36 @@
+2025-04-24 16:22:53,951 - INFO - Loading dataset from dataset/blackhole.csv
+2025-04-24 16:22:54,701 - INFO - Dataset loaded with 404134 rows and 18 columns
+2025-04-24 16:22:54,732 - INFO - Features: ['length', 'transmission_rate_per_1000_ms', 'reception_rate_per_1000_ms', 'transmission_average_per_sec', 'reception_average_per_sec', 'transmission_count_per_sec', 'reception_count_per_sec', 'transmission_total_duration_per_sec', 'reception_total_duration_per_sec', 'dao', 'dis', 'dio']
+2025-04-24 16:22:54,735 - INFO - Class distribution: {0: 269852, 1: 134282}
+2025-04-24 16:22:54,740 - INFO - Preprocessing features...
+2025-04-24 16:22:54,770 - INFO - Selected features: ['transmission_rate_per_1000_ms', 'reception_rate_per_1000_ms', 'transmission_count_per_sec', 'reception_count_per_sec', 'transmission_total_duration_per_sec', 'reception_total_duration_per_sec', 'transmission_reception_ratio', 'count_ratio', 'duration_ratio', 'dao', 'dis', 'dio', 'length']
+2025-04-24 16:22:54,774 - INFO - Starting model training
+2025-04-24 16:22:54,939 - INFO - Training set: 323307 samples, Test set: 80827 samples
+2025-04-24 16:22:55,026 - INFO - Scaler saved to Model/scaler.joblib
+2025-04-24 16:22:55,026 - INFO - Training LightGBM model...
+2025-04-24 16:22:56,712 - INFO - Model performance:
+2025-04-24 16:22:56,712 - INFO - Accuracy: 0.9870
+2025-04-24 16:22:56,712 - INFO - Precision: 0.9698
+2025-04-24 16:22:56,713 - INFO - Recall: 0.9918
+2025-04-24 16:22:56,723 - INFO - F1 Score: 0.9807
+2025-04-24 16:22:56,728 - INFO - Model saved to Model/blackhole_detector.txt
+2025-04-24 16:22:56,730 - INFO - Model metadata saved to Model/model_metadata.joblib
+2025-04-24 16:22:56,739 - INFO - Model training completed successfully
+2025-04-24 16:48:36,460 - INFO - Loading dataset from dataset/blackhole.csv
+2025-04-24 16:48:37,166 - INFO - Dataset loaded with 404134 rows and 18 columns
+2025-04-24 16:48:37,198 - INFO - Features: ['length', 'transmission_rate_per_1000_ms', 'reception_rate_per_1000_ms', 'transmission_average_per_sec', 'reception_average_per_sec', 'transmission_count_per_sec', 'reception_count_per_sec', 'transmission_total_duration_per_sec', 'reception_total_duration_per_sec', 'dao', 'dis', 'dio']
+2025-04-24 16:48:37,202 - INFO - Class distribution: {0: 269852, 1: 134282}
+2025-04-24 16:48:37,205 - INFO - Preprocessing features...
+2025-04-24 16:48:37,237 - INFO - Selected features: ['transmission_rate_per_1000_ms', 'reception_rate_per_1000_ms', 'transmission_count_per_sec', 'reception_count_per_sec', 'transmission_total_duration_per_sec', 'reception_total_duration_per_sec', 'transmission_reception_ratio', 'count_ratio', 'duration_ratio', 'dao', 'dis', 'dio', 'length']
+2025-04-24 16:48:37,240 - INFO - Starting model training
+2025-04-24 16:48:37,407 - INFO - Training set: 323307 samples, Test set: 80827 samples
+2025-04-24 16:48:37,490 - INFO - Scaler saved to Model/scaler.joblib
+2025-04-24 16:48:37,490 - INFO - Training LightGBM model...
+2025-04-24 16:48:39,094 - INFO - Model performance:
+2025-04-24 16:48:39,094 - INFO - Accuracy: 0.9870
+2025-04-24 16:48:39,095 - INFO - Precision: 0.9698
+2025-04-24 16:48:39,095 - INFO - Recall: 0.9918
+2025-04-24 16:48:39,095 - INFO - F1 Score: 0.9807
+2025-04-24 16:48:39,099 - INFO - Model saved to Model/blackhole_detector.txt
+2025-04-24 16:48:39,101 - INFO - Model metadata saved to Model/model_metadata.joblib
+2025-04-24 16:48:39,111 - INFO - Model training completed successfully

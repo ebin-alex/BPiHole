@@ -3,6 +3,7 @@ import threading
 from scapy.all import sniff, IP
 from datetime import datetime
 import time
+import os
 
 class PacketSniffer:
     def __init__(self, packet_queue):
@@ -17,10 +18,18 @@ class PacketSniffer:
         try:
             if IP in packet:
                 self.packet_count += 1
+                # Ensure we have valid source and destination IPs
+                src_ip = packet[IP].src
+                dst_ip = packet[IP].dst
+                
+                if not src_ip or not dst_ip:
+                    self.logger.warning(f"Invalid IP addresses in packet: src={src_ip}, dst={dst_ip}")
+                    return
+                    
                 packet_data = {
                     'timestamp': datetime.now().timestamp(),
-                    'source_ip': packet[IP].src,
-                    'dest_ip': packet[IP].dst,
+                    'source_ip': src_ip,
+                    'dest_ip': dst_ip,
                     'protocol': packet[IP].proto,
                     'length': len(packet),
                     'ttl': packet[IP].ttl,
@@ -43,6 +52,11 @@ class PacketSniffer:
     def _run_sniffer(self):
         """Run the packet sniffer"""
         try:
+            # Check if running with root privileges
+            if os.geteuid() != 0:
+                self.logger.error("Packet sniffer must be run with root privileges (sudo)")
+                return
+                
             # Capture packets on all interfaces
             self.logger.info("Starting packet capture...")
             # Use a filter to capture only IP packets

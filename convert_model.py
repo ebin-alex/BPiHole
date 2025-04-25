@@ -1,89 +1,96 @@
-import torch
-import torch.nn as nn
 import os
-import argparse
+import torch
 import logging
+import argparse
+from torch import nn
 
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s'
-)
-
-class MAMLModel(nn.Module):
-    def __init__(self, input_size, hidden_size, output_size):
-        super(MAMLModel, self).__init__()
+class RelationNetwork(nn.Module):
+    def __init__(self, input_size, hidden_size):
+        super(RelationNetwork, self).__init__()
         self.layer1 = nn.Linear(input_size, hidden_size)
         self.relu = nn.ReLU()
-        self.layer2 = nn.Linear(hidden_size, output_size)
+        self.layer2 = nn.Linear(hidden_size, hidden_size)
+        self.relation_layer = nn.Sequential(
+            nn.Linear(2 * hidden_size, hidden_size),
+            nn.ReLU(),
+            nn.Linear(hidden_size, 1),
+            nn.Sigmoid()
+        )
 
-    def forward(self, inputs):
-        x = self.layer1(inputs)
+    def embed(self, x):
+        x = self.layer1(x)
         x = self.relu(x)
         x = self.layer2(x)
         return x
 
-def convert_model(input_model_path, output_model_path, input_size=9, hidden_size=64, output_size=1):
+    def forward(self, x1, x2):
+        # Get embeddings for both inputs
+        x1_embed = self.embed(x1)
+        x2_embed = self.embed(x2)
+        # Concatenate embeddings
+        combined = torch.cat((x1_embed, x2_embed), dim=-1)
+        # Get relation score
+        relation_score = self.relation_layer(combined)
+        return relation_score
+
+def convert_model(input_path, output_path, input_size=13, hidden_size=64):
     """
-    Convert a trained model to the format expected by our system
-    
-    Args:
-        input_model_path: Path to the input model file
-        output_model_path: Path to save the converted model
-        input_size: Number of input features
-        hidden_size: Size of hidden layer
-        output_size: Number of output classes
+    Convert a PyTorch model to TorchScript format
     """
     try:
-        # Check if input model exists
-        if not os.path.exists(input_model_path):
-            logging.error(f"Input model file '{input_model_path}' not found")
-            return False
-            
-        # Load the input model
-        input_model = torch.load(input_model_path, map_location=torch.device('cpu'))
-        
-        # Initialize our model architecture
-        model = MAMLModel(input_size, hidden_size, output_size)
-        
-        # If the input model is a state dict, load it directly
-        if isinstance(input_model, dict):
-            model.load_state_dict(input_model)
-        else:
-            # If it's a full model, extract the state dict
-            model.load_state_dict(input_model.state_dict())
-            
-        # Save the model state dict
-        torch.save(model.state_dict(), output_model_path)
-        logging.info(f"Model converted and saved to '{output_model_path}'")
-        return True
-        
+        # Load the PyTorch model
+        model = RelationNetwork(input_size=input_size, hidden_size=hidden_size)
+        model.load_state_dict(torch.load(input_path))
+        model.eval()
+
+        # Create dummy inputs (batch_size=1)
+        dummy_input1 = torch.randn(1, input_size)
+        dummy_input2 = torch.randn(1, input_size)
+
+        # Test the model with dummy inputs
+        with torch.no_grad():
+            test_output = model(dummy_input1, dummy_input2)
+            logging.info(f"Test output shape: {test_output.shape}")
+
+        # Export the model to TorchScript
+        scripted_model = torch.jit.script(model)
+        scripted_model.save(output_path)
+
+        # Verify the model
+        loaded_model = torch.jit.load(output_path)
+        with torch.no_grad():
+            output = loaded_model(dummy_input1, dummy_input2)
+            logging.info(f"Model successfully converted and verified: {output_path}")
+            logging.info(f"Verification output shape: {output.shape}")
+            return True
+
     except Exception as e:
         logging.error(f"Error converting model: {str(e)}")
         return False
 
 def main():
-    parser = argparse.ArgumentParser(description='Convert a trained model to the format expected by our system')
-    parser.add_argument('--input', type=str, required=True, help='Path to the input model file')
-    parser.add_argument('--output', type=str, default='relation_net.pth', help='Path to save the converted model')
-    parser.add_argument('--input_size', type=int, default=9, help='Number of input features')
-    parser.add_argument('--hidden_size', type=int, default=64, help='Size of hidden layer')
-    parser.add_argument('--output_size', type=int, default=1, help='Number of output classes')
+    parser = argparse.ArgumentParser(description='Convert PyTorch model to TorchScript')
+    parser.add_argument('--input', type=str, required=True, help='Path to input PyTorch model')
+    parser.add_argument('--output', type=str, required=True, help='Path to output TorchScript model')
+    parser.add_argument('--input_size', type=int, default=13, help='Input feature size')
+    parser.add_argument('--hidden_size', type=int, default=64, help='Hidden layer size')
     
     args = parser.parse_args()
-    
+
+    # Set up logging
+    logging.basicConfig(level=logging.INFO)
+
+    # Convert the model
     success = convert_model(
-        args.input, 
-        args.output, 
-        args.input_size, 
-        args.hidden_size, 
-        args.output_size
+        args.input,
+        args.output,
+        input_size=args.input_size,
+        hidden_size=args.hidden_size
     )
-    
-    if success:
-        print("Model conversion completed successfully")
-    else:
-        print("Model conversion failed")
+
+    if not success:
+        logging.error("Model conversion failed")
+        exit(1)
 
 if __name__ == "__main__":
     main() 

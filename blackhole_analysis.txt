@@ -1,0 +1,43 @@
+Blackhole Traffic Analysis
+========================
+
+Total entries: 404134
+Blackhole entries: 134282
+Normal entries: 269852
+
+Feature Analysis
+---------------
+
+transmission_rate_per_1000_ms:
+Blackhole - Mean: 0.42, Max: 1.00
+Normal - Mean: 0.37, Max: 1.00
+
+reception_rate_per_1000_ms:
+Blackhole - Mean: 0.40, Max: 1.00
+Normal - Mean: 0.37, Max: 1.00
+
+transmission_count_per_sec:
+Blackhole - Mean: 0.42, Max: 1.00
+Normal - Mean: 0.37, Max: 1.00
+
+reception_count_per_sec:
+Blackhole - Mean: 0.40, Max: 1.00
+Normal - Mean: 0.37, Max: 1.00
+
+transmission_total_duration_per_sec:
+Blackhole - Mean: 0.50, Max: 1.00
+Normal - Mean: 0.50, Max: 1.00
+
+reception_total_duration_per_sec:
+Blackhole - Mean: 0.61, Max: 1.00
+Normal - Mean: 0.51, Max: 1.00
+
+Feature Correlations with Label
+-----------------------------
+label                                  1.000000
+reception_total_duration_per_sec       0.229349
+transmission_count_per_sec             0.101199
+transmission_rate_per_1000_ms          0.101129
+reception_rate_per_1000_ms             0.041332
+reception_count_per_sec                0.041284
+transmission_total_duration_per_sec    0.027751

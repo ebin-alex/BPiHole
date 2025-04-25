@@ -10,25 +10,41 @@ class PacketCapture(threading.Thread):
         self.packet_queue = packet_queue
         self.interface = interface
         self.running = False
+        self.logger = logging.getLogger(__name__)
+        self.flow_stats = {}
         
-    def process_packet(self, packet):
+    def process_packet(self, packet_data):
         """Process a captured packet"""
         try:
-            if IP in packet:
-                # Extract packet information
-                packet_info = {
-                    'source_ip': packet[IP].src,
-                    'dest_ip': packet[IP].dst,
-                    'timestamp': datetime.now(),
-                    'length': len(packet),
-                    'protocol': packet[IP].proto
+            # Validate packet data
+            if not all(key in packet_data for key in ['source_ip', 'dest_ip', 'timestamp']):
+                self.logger.warning(f"Invalid packet data: missing required fields")
+                return
+                
+            src_ip = packet_data['source_ip']
+            dst_ip = packet_data['dest_ip']
+            
+            # Log packet details for debugging
+            self.logger.debug(f"Processing packet: {src_ip} -> {dst_ip}")
+            
+            # Update flow statistics
+            flow_key = (src_ip, dst_ip)
+            if flow_key not in self.flow_stats:
+                self.flow_stats[flow_key] = {
+                    'packet_count': 0,
+                    'start_time': packet_data['timestamp'],
+                    'last_update': packet_data['timestamp']
                 }
-                
-                logging.debug(f"Captured packet: {packet_info}")
-                self.packet_queue.put(packet_info)
-                
+            
+            stats = self.flow_stats[flow_key]
+            stats['packet_count'] += 1
+            stats['last_update'] = packet_data['timestamp']
+            
+            # Check for blackhole conditions
+            self.check_blackhole_condition(flow_key, stats)
+            
         except Exception as e:
-            logging.error(f"Error processing packet: {str(e)}")
+            self.logger.error(f"Error processing packet: {str(e)}")
             
     def run(self):
         """Main capture loop"""

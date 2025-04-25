@@ -1,0 +1,216 @@
+2025-04-20 16:25:18,009 - INFO - Loading dataset...
+2025-04-20 16:25:18,732 - INFO - Dataset loaded with shape: (404134, 18)
+2025-04-20 16:25:18,733 - INFO - Preparing features and labels...
+2025-04-20 16:25:18,745 - INFO - Removing outliers...
+2025-04-20 16:25:18,891 - INFO - Removed 142765 outliers
+2025-04-20 16:25:18,892 - INFO - Adding engineered features...
+2025-04-20 16:25:18,911 - INFO - Selected features: ['transmission_rate_per_1000_ms', 'reception_rate_per_1000_ms', 'transmission_count_per_sec', 'reception_count_per_sec', 'transmission_total_duration_per_sec', 'reception_total_duration_per_sec', 'transmission_reception_ratio', 'count_ratio', 'duration_ratio', 'dao', 'dis', 'dio', 'length']
+2025-04-20 16:25:18,911 - INFO - Features shape: (261369, 13), Labels shape: (261369,)
+2025-04-20 16:25:18,918 - INFO - Normalizing features...
+2025-04-20 16:25:19,004 - INFO - Splitting data...
+2025-04-20 16:25:19,189 - INFO - Train size: (182958, 13), Test size: (78411, 13)
+2025-04-20 16:25:19,189 - INFO - Loading ONNX model...
+2025-04-20 16:25:19,198 - INFO - Making predictions...
+2025-04-20 16:25:19,199 - ERROR - Error in evaluation: [ONNXRuntimeError] : 2 : INVALID_ARGUMENT : Got invalid dimensions for input: input1 for the following indices
+ index: 1 Got: 13 Expected: 15
+ Please fix either the inputs/outputs or the model.
+Traceback (most recent call last):
+  File "D:\BPiHole\test_onnx_accuracy.py", line 141, in main
+    output = session.run(None, input_data)
+  File "D:\BPiHole\blackhole_test_env\Lib\site-packages\onnxruntime\capi\onnxruntime_inference_collection.py", line 270, in run
+    return self._sess.run(output_names, input_feed, run_options)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+onnxruntime.capi.onnxruntime_pybind11_state.InvalidArgument: [ONNXRuntimeError] : 2 : INVALID_ARGUMENT : Got invalid dimensions for input: input1 for the following indices
+ index: 1 Got: 13 Expected: 15
+ Please fix either the inputs/outputs or the model.
+2025-04-20 16:25:46,690 - INFO - Loading dataset...
+2025-04-20 16:25:47,415 - INFO - Dataset loaded with shape: (404134, 18)
+2025-04-20 16:25:47,416 - INFO - Preparing features and labels...
+2025-04-20 16:25:47,426 - INFO - Removing outliers...
+2025-04-20 16:25:47,563 - INFO - Removed 142765 outliers
+2025-04-20 16:25:47,564 - INFO - Adding engineered features...
+2025-04-20 16:25:47,584 - INFO - Selected features: ['transmission_rate_per_1000_ms', 'reception_rate_per_1000_ms', 'transmission_count_per_sec', 'reception_count_per_sec', 'transmission_total_duration_per_sec', 'reception_total_duration_per_sec', 'transmission_reception_ratio', 'count_ratio', 'duration_ratio', 'dao', 'dis', 'dio', 'length', 'transmission_rate_per_1000_ms', 'reception_rate_per_1000_ms']
+2025-04-20 16:25:47,584 - INFO - Features shape: (261369, 15), Labels shape: (261369,)
+2025-04-20 16:25:47,590 - INFO - Normalizing features...
+2025-04-20 16:25:47,661 - INFO - Splitting data...
+2025-04-20 16:25:47,795 - INFO - Train size: (182958, 15), Test size: (78411, 15)
+2025-04-20 16:25:47,796 - INFO - Loading ONNX model...
+2025-04-20 16:25:47,805 - INFO - Making predictions...
+2025-04-20 16:25:47,807 - INFO - Processed 1000/78411 samples
+2025-04-20 16:25:47,808 - INFO - Processed 2000/78411 samples
+2025-04-20 16:25:47,809 - INFO - Processed 3000/78411 samples
+2025-04-20 16:25:47,810 - INFO - Processed 4000/78411 samples
+2025-04-20 16:25:47,811 - INFO - Processed 5000/78411 samples
+2025-04-20 16:25:47,812 - INFO - Processed 6000/78411 samples
+2025-04-20 16:25:47,813 - INFO - Processed 7000/78411 samples
+2025-04-20 16:25:47,814 - INFO - Processed 8000/78411 samples
+2025-04-20 16:25:47,815 - INFO - Processed 9000/78411 samples
+2025-04-20 16:25:47,817 - INFO - Processed 10000/78411 samples
+2025-04-20 16:25:47,818 - INFO - Processed 11000/78411 samples
+2025-04-20 16:25:47,819 - INFO - Processed 12000/78411 samples
+2025-04-20 16:25:47,820 - INFO - Processed 13000/78411 samples
+2025-04-20 16:25:47,821 - INFO - Processed 14000/78411 samples
+2025-04-20 16:25:47,822 - INFO - Processed 15000/78411 samples
+2025-04-20 16:25:47,823 - INFO - Processed 16000/78411 samples
+2025-04-20 16:25:47,825 - INFO - Processed 17000/78411 samples
+2025-04-20 16:25:47,826 - INFO - Processed 18000/78411 samples
+2025-04-20 16:25:47,828 - INFO - Processed 19000/78411 samples
+2025-04-20 16:25:47,829 - INFO - Processed 20000/78411 samples
+2025-04-20 16:25:47,831 - INFO - Processed 21000/78411 samples
+2025-04-20 16:25:47,833 - INFO - Processed 22000/78411 samples
+2025-04-20 16:25:47,834 - INFO - Processed 23000/78411 samples
+2025-04-20 16:25:47,835 - INFO - Processed 24000/78411 samples
+2025-04-20 16:25:47,837 - INFO - Processed 25000/78411 samples
+2025-04-20 16:25:47,838 - INFO - Processed 26000/78411 samples
+2025-04-20 16:25:47,839 - INFO - Processed 27000/78411 samples
+2025-04-20 16:25:47,840 - INFO - Processed 28000/78411 samples
+2025-04-20 16:25:47,841 - INFO - Processed 29000/78411 samples
+2025-04-20 16:25:47,842 - INFO - Processed 30000/78411 samples
+2025-04-20 16:25:47,844 - INFO - Processed 31000/78411 samples
+2025-04-20 16:25:47,845 - INFO - Processed 32000/78411 samples
+2025-04-20 16:25:47,846 - INFO - Processed 33000/78411 samples
+2025-04-20 16:25:47,847 - INFO - Processed 34000/78411 samples
+2025-04-20 16:25:47,849 - INFO - Processed 35000/78411 samples
+2025-04-20 16:25:47,850 - INFO - Processed 36000/78411 samples
+2025-04-20 16:25:47,851 - INFO - Processed 37000/78411 samples
+2025-04-20 16:25:47,853 - INFO - Processed 38000/78411 samples
+2025-04-20 16:25:47,854 - INFO - Processed 39000/78411 samples
+2025-04-20 16:25:47,855 - INFO - Processed 40000/78411 samples
+2025-04-20 16:25:47,856 - INFO - Processed 41000/78411 samples
+2025-04-20 16:25:47,857 - INFO - Processed 42000/78411 samples
+2025-04-20 16:25:47,858 - INFO - Processed 43000/78411 samples
+2025-04-20 16:25:47,859 - INFO - Processed 44000/78411 samples
+2025-04-20 16:25:47,860 - INFO - Processed 45000/78411 samples
+2025-04-20 16:25:47,861 - INFO - Processed 46000/78411 samples
+2025-04-20 16:25:47,862 - INFO - Processed 47000/78411 samples
+2025-04-20 16:25:47,863 - INFO - Processed 48000/78411 samples
+2025-04-20 16:25:47,864 - INFO - Processed 49000/78411 samples
+2025-04-20 16:25:47,866 - INFO - Processed 50000/78411 samples
+2025-04-20 16:25:47,867 - INFO - Processed 51000/78411 samples
+2025-04-20 16:25:47,868 - INFO - Processed 52000/78411 samples
+2025-04-20 16:25:47,869 - INFO - Processed 53000/78411 samples
+2025-04-20 16:25:47,870 - INFO - Processed 54000/78411 samples
+2025-04-20 16:25:47,871 - INFO - Processed 55000/78411 samples
+2025-04-20 16:25:47,873 - INFO - Processed 56000/78411 samples
+2025-04-20 16:25:47,874 - INFO - Processed 57000/78411 samples
+2025-04-20 16:25:47,875 - INFO - Processed 58000/78411 samples
+2025-04-20 16:25:47,876 - INFO - Processed 59000/78411 samples
+2025-04-20 16:25:47,877 - INFO - Processed 60000/78411 samples
+2025-04-20 16:25:47,878 - INFO - Processed 61000/78411 samples
+2025-04-20 16:25:47,879 - INFO - Processed 62000/78411 samples
+2025-04-20 16:25:47,881 - INFO - Processed 63000/78411 samples
+2025-04-20 16:25:47,883 - INFO - Processed 64000/78411 samples
+2025-04-20 16:25:47,885 - INFO - Processed 65000/78411 samples
+2025-04-20 16:25:47,886 - INFO - Processed 66000/78411 samples
+2025-04-20 16:25:47,888 - INFO - Processed 67000/78411 samples
+2025-04-20 16:25:47,890 - INFO - Processed 68000/78411 samples
+2025-04-20 16:25:47,891 - INFO - Processed 69000/78411 samples
+2025-04-20 16:25:47,893 - INFO - Processed 70000/78411 samples
+2025-04-20 16:25:47,895 - INFO - Processed 71000/78411 samples
+2025-04-20 16:25:47,896 - INFO - Processed 72000/78411 samples
+2025-04-20 16:25:47,898 - INFO - Processed 73000/78411 samples
+2025-04-20 16:25:47,900 - INFO - Processed 74000/78411 samples
+2025-04-20 16:25:47,902 - INFO - Processed 75000/78411 samples
+2025-04-20 16:25:47,903 - INFO - Processed 76000/78411 samples
+2025-04-20 16:25:47,905 - INFO - Processed 77000/78411 samples
+2025-04-20 16:25:47,907 - INFO - Processed 78000/78411 samples
+2025-04-20 16:25:47,908 - INFO - Processed 78411/78411 samples
+2025-04-20 16:25:48,219 - INFO - 
+Evaluating different thresholds...
+2025-04-20 16:25:48,237 - INFO - 
+Threshold: 0.10
+2025-04-20 16:25:48,237 - INFO - Accuracy: 0.5610
+2025-04-20 16:25:48,238 - INFO - Precision: 0.3351
+2025-04-20 16:25:48,238 - INFO - Recall: 0.3355
+2025-04-20 16:25:48,238 - INFO - F1 Score: 0.3353
+2025-04-20 16:25:48,238 - INFO - True Positives: 8683
+2025-04-20 16:25:48,239 - INFO - False Positives: 17225
+2025-04-20 16:25:48,239 - INFO - True Negatives: 35306
+2025-04-20 16:25:48,239 - INFO - False Negatives: 17197
+2025-04-20 16:25:48,256 - INFO - 
+Threshold: 0.20
+2025-04-20 16:25:48,257 - INFO - Accuracy: 0.5666
+2025-04-20 16:25:48,257 - INFO - Precision: 0.3367
+2025-04-20 16:25:48,257 - INFO - Recall: 0.3227
+2025-04-20 16:25:48,258 - INFO - F1 Score: 0.3295
+2025-04-20 16:25:48,258 - INFO - True Positives: 8352
+2025-04-20 16:25:48,258 - INFO - False Positives: 16457
+2025-04-20 16:25:48,258 - INFO - True Negatives: 36074
+2025-04-20 16:25:48,258 - INFO - False Negatives: 17528
+2025-04-20 16:25:48,276 - INFO - 
+Threshold: 0.30
+2025-04-20 16:25:48,276 - INFO - Accuracy: 0.5694
+2025-04-20 16:25:48,276 - INFO - Precision: 0.3361
+2025-04-20 16:25:48,277 - INFO - Recall: 0.3122
+2025-04-20 16:25:48,277 - INFO - F1 Score: 0.3237
+2025-04-20 16:25:48,277 - INFO - True Positives: 8079
+2025-04-20 16:25:48,277 - INFO - False Positives: 15962
+2025-04-20 16:25:48,278 - INFO - True Negatives: 36569
+2025-04-20 16:25:48,278 - INFO - False Negatives: 17801
+2025-04-20 16:25:48,295 - INFO - 
+Threshold: 0.40
+2025-04-20 16:25:48,296 - INFO - Accuracy: 0.5732
+2025-04-20 16:25:48,296 - INFO - Precision: 0.3372
+2025-04-20 16:25:48,296 - INFO - Recall: 0.3036
+2025-04-20 16:25:48,296 - INFO - F1 Score: 0.3195
+2025-04-20 16:25:48,297 - INFO - True Positives: 7857
+2025-04-20 16:25:48,297 - INFO - False Positives: 15442
+2025-04-20 16:25:48,297 - INFO - True Negatives: 37089
+2025-04-20 16:25:48,297 - INFO - False Negatives: 18023
+2025-04-20 16:25:48,314 - INFO - 
+Threshold: 0.50
+2025-04-20 16:25:48,315 - INFO - Accuracy: 0.5754
+2025-04-20 16:25:48,315 - INFO - Precision: 0.3366
+2025-04-20 16:25:48,315 - INFO - Recall: 0.2950
+2025-04-20 16:25:48,316 - INFO - F1 Score: 0.3144
+2025-04-20 16:25:48,316 - INFO - True Positives: 7634
+2025-04-20 16:25:48,316 - INFO - False Positives: 15046
+2025-04-20 16:25:48,316 - INFO - True Negatives: 37485
+2025-04-20 16:25:48,317 - INFO - False Negatives: 18246
+2025-04-20 16:25:48,344 - INFO - 
+Threshold: 0.60
+2025-04-20 16:25:48,344 - INFO - Accuracy: 0.5779
+2025-04-20 16:25:48,345 - INFO - Precision: 0.3365
+2025-04-20 16:25:48,345 - INFO - Recall: 0.2867
+2025-04-20 16:25:48,345 - INFO - F1 Score: 0.3096
+2025-04-20 16:25:48,345 - INFO - True Positives: 7421
+2025-04-20 16:25:48,346 - INFO - False Positives: 14635
+2025-04-20 16:25:48,346 - INFO - True Negatives: 37896
+2025-04-20 16:25:48,346 - INFO - False Negatives: 18459
+2025-04-20 16:25:48,377 - INFO - 
+Threshold: 0.70
+2025-04-20 16:25:48,377 - INFO - Accuracy: 0.5819
+2025-04-20 16:25:48,378 - INFO - Precision: 0.3379
+2025-04-20 16:25:48,378 - INFO - Recall: 0.2779
+2025-04-20 16:25:48,379 - INFO - F1 Score: 0.3050
+2025-04-20 16:25:48,379 - INFO - True Positives: 7192
+2025-04-20 16:25:48,379 - INFO - False Positives: 14093
+2025-04-20 16:25:48,380 - INFO - True Negatives: 38438
+2025-04-20 16:25:48,380 - INFO - False Negatives: 18688
+2025-04-20 16:25:48,409 - INFO - 
+Threshold: 0.80
+2025-04-20 16:25:48,409 - INFO - Accuracy: 0.5868
+2025-04-20 16:25:48,410 - INFO - Precision: 0.3398
+2025-04-20 16:25:48,410 - INFO - Recall: 0.2671
+2025-04-20 16:25:48,410 - INFO - F1 Score: 0.2991
+2025-04-20 16:25:48,411 - INFO - True Positives: 6912
+2025-04-20 16:25:48,411 - INFO - False Positives: 13431
+2025-04-20 16:25:48,411 - INFO - True Negatives: 39100
+2025-04-20 16:25:48,411 - INFO - False Negatives: 18968
+2025-04-20 16:25:48,436 - INFO - 
+Threshold: 0.90
+2025-04-20 16:25:48,436 - INFO - Accuracy: 0.5952
+2025-04-20 16:25:48,437 - INFO - Precision: 0.3451
+2025-04-20 16:25:48,437 - INFO - Recall: 0.2522
+2025-04-20 16:25:48,437 - INFO - F1 Score: 0.2914
+2025-04-20 16:25:48,438 - INFO - True Positives: 6526
+2025-04-20 16:25:48,438 - INFO - False Positives: 12386
+2025-04-20 16:25:48,438 - INFO - True Negatives: 40145
+2025-04-20 16:25:48,439 - INFO - False Negatives: 19354
+2025-04-20 16:25:48,439 - INFO - 
+Best threshold: 0.10
+2025-04-20 16:25:48,439 - INFO - Best F1 score: 0.3353
+2025-04-20 16:25:48,442 - INFO - 
+Detailed results saved to threshold_evaluation_results.csv
+2025-04-20 16:25:48,527 - INFO - 
+Confidence scores saved to model_evaluation_results.csv

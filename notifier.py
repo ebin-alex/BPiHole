@@ -4,6 +4,14 @@ import time
 from datetime import datetime
 import os
 from hardware_controllers import LEDController, BuzzerController, DisplayController
+import sys
+import busio
+import board
+import digitalio
+from board import SCL, SDA
+from PIL import Image, ImageDraw, ImageFont
+import adafruit_ssd1306
+from adafruit_mcp230xx.mcp23017 import MCP23017
 
 class Notifier:
     def __init__(self, use_hardware=True):
@@ -35,51 +43,36 @@ class Notifier:
         # Alert history
         self.alert_history = []
         
-    def trigger_alerts(self, detection):
-        """Trigger all alert mechanisms"""
+    def notify_detection(self, detection):
+        """Notify about a blackhole detection"""
         try:
-            # Create alert message
-            alert_msg = f"Blackhole detected from {detection['source_ip']} (confidence: {detection['confidence']:.2f})"
-            timestamp = datetime.fromtimestamp(detection['timestamp']).strftime('%Y-%m-%d %H:%M:%S')
+            # Add to history
+            self.alert_history.append(detection)
             
-            # Update alert history
-            self.alert_history.append({
-                'timestamp': timestamp,
-                'message': alert_msg,
-                'source_ip': detection['source_ip'],
-                'confidence': detection['confidence']
-            })
+            # Update display with detection info
+            self.display.show_detection(detection)
             
-            # Keep only last 100 alerts
-            if len(self.alert_history) > 100:
-                self.alert_history = self.alert_history[-100:]
-            
-            # Trigger LED alert
-            self.led.blink_alert()
-            
-            # Trigger buzzer alert
-            self.buzzer.trigger_alert()
-            
-            # Update OLED display
-            self.display.show_alert(alert_msg)
+            # If it's a blackhole, trigger alerts
+            if detection.get('is_blackhole', False):
+                # Flash LEDs
+                self.led.blink_alert()
                 
-            self.logger.info(f"Alerts triggered: {alert_msg}")
-            
+                # Sound buzzer
+                self.buzzer.sound_alert(duration=1.0)
+                
+                self.logger.info(f"Blackhole detected: {detection}")
+            else:
+                self.logger.debug(f"Normal traffic: {detection}")
+                
         except Exception as e:
-            self.logger.error(f"Error triggering alerts: {str(e)}")
+            self.logger.error(f"Error in notification: {str(e)}")
             
-    def get_alert_history(self):
-        """Get the alert history"""
-        return self.alert_history
-        
     def cleanup(self):
-        """Cleanup resources"""
+        """Clean up resources"""
         try:
-            # Cleanup hardware controllers
             self.led.cleanup()
             self.buzzer.cleanup()
             self.display.cleanup()
             self.logger.info("Notifier cleanup completed")
-            
         except Exception as e:
             self.logger.error(f"Error during cleanup: {str(e)}") 

@@ -1,0 +1,32 @@
+2025-04-20 11:26:28,321 - INFO - Converting model from Model/relation_net.pth
+2025-04-20 11:26:28,349 - ERROR - Error converting model: Error(s) in loading state_dict for RelationNetwork:
+	size mismatch for layer1.weight: copying a param with shape torch.Size([64, 15]) from checkpoint, the shape in current model is torch.Size([64, 9]).
+2025-04-20 11:26:28,350 - WARNING - Failed to convert Model/relation_net.pth, trying next model if available
+2025-04-20 11:26:28,350 - INFO - Converting model from training/models/relation_net.pt
+2025-04-20 11:26:28,355 - ERROR - Error converting model: Error(s) in loading state_dict for RelationNetwork:
+	Missing key(s) in state_dict: "layer1.weight", "layer1.bias", "layer2.weight", "layer2.bias", "relation_layer.0.weight", "relation_layer.0.bias", "relation_layer.2.weight", "relation_layer.2.bias". 
+	Unexpected key(s) in state_dict: "embedding_network.0.weight", "embedding_network.0.bias", "embedding_network.2.weight", "embedding_network.2.bias", "embedding_network.2.running_mean", "embedding_network.2.running_var", "embedding_network.2.num_batches_tracked", "embedding_network.4.weight", "embedding_network.4.bias", "embedding_network.6.weight", "embedding_network.6.bias", "embedding_network.6.running_mean", "embedding_network.6.running_var", "embedding_network.6.num_batches_tracked", "embedding_network.8.weight", "embedding_network.8.bias", "embedding_network.10.weight", "embedding_network.10.bias", "embedding_network.10.running_mean", "embedding_network.10.running_var", "embedding_network.10.num_batches_tracked", "relation_network.0.weight", "relation_network.0.bias", "relation_network.2.weight", "relation_network.2.bias", "relation_network.2.running_mean", "relation_network.2.running_var", "relation_network.2.num_batches_tracked", "relation_network.4.weight", "relation_network.4.bias", "relation_network.6.weight", "relation_network.6.bias", "relation_network.6.running_mean", "relation_network.6.running_var", "relation_network.6.num_batches_tracked", "relation_network.8.weight", "relation_network.8.bias". 
+2025-04-20 11:26:28,356 - WARNING - Failed to convert training/models/relation_net.pt, trying next model if available
+2025-04-20 11:28:02,330 - INFO - Converting model from Model/relation_net.pth
+2025-04-20 11:28:02,581 - INFO - Model converted and saved to Model\blackhole_detector.onnx
+2025-04-20 11:28:02,600 - INFO - Model verified successfully with ONNX Runtime
+2025-04-20 11:28:02,601 - INFO - Conversion successful!
+2025-04-20 16:20:13,251 - INFO - ONNX model is valid!
+2025-04-20 16:20:13,265 - INFO - ONNX Runtime test output: [[0.0124172]]
+2025-04-20 16:20:13,266 - INFO - PyTorch test output: [[0.01241718]]
+2025-04-20 16:20:13,267 - INFO - Model successfully converted and saved to Model\blackhole_detector.onnx
+2025-04-20 16:23:20,253 - INFO - 
+Test case 1:
+2025-04-20 16:23:20,253 - INFO - PyTorch output: [[0.50341773]]
+2025-04-20 16:23:20,254 - INFO - ONNX output: [[0.5034183]]
+2025-04-20 16:23:20,254 - INFO - Maximum difference: 5.960464477539062e-07
+2025-04-20 16:23:20,281 - INFO - 
+Test case 2:
+2025-04-20 16:23:20,282 - INFO - PyTorch output: [[1.]]
+2025-04-20 16:23:20,282 - INFO - ONNX output: [[1.]]
+2025-04-20 16:23:20,282 - INFO - Maximum difference: 0.0
+2025-04-20 16:23:20,285 - INFO - 
+Test case 3:
+2025-04-20 16:23:20,286 - INFO - PyTorch output: [[1.4619417e-05]]
+2025-04-20 16:23:20,286 - INFO - ONNX output: [[1.4603138e-05]]
+2025-04-20 16:23:20,287 - INFO - Maximum difference: 1.6279045667033643e-08
